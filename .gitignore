@@ -3,3 +3,5 @@ venv
 Pipfile.lock
 .idea
 __pycache__
+tests/*.html
+tests/*/*.css
