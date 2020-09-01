@@ -1,3 +1,5 @@
+import unittest
+
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
@@ -6,10 +8,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils.test_data import TestData
 
 
-class TestBase:
+class TestBase(unittest.TestCase):
 
-    driver = webdriver.Chrome(TestData.CHROME_EXECUTABLE_PATH)
-    driver.get(TestData.BASE_URL)
+    def setUp(self):
+        self.driver = webdriver.Chrome(TestData.CHROME_EXECUTABLE_PATH)
+        self.driver.get(TestData.BASE_URL)
+
+    def tearDown(self):
+        self.driver.close()
 
     #
     # def setup(self):
