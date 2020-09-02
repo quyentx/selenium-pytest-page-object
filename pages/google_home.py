@@ -4,9 +4,12 @@ from seleniumpagefactory.Pagefactory import PageFactory
 from utils.test_data import TestData
 
 
+class HomeLocators:
+    STATS = "result-stats"
+
+
 class GoogleHomePage(PageFactory):
     is_stat_enabled = False
-    first_link = ""
 
     def __init__(self, driver):
         # It is necessary to to initialise driver as page class member to implement Page Factory
@@ -26,7 +29,10 @@ class GoogleHomePage(PageFactory):
 
     def is_stats_loaded(self):
         try:
-            self.driver.find_element(By.XPATH, "//div[@id='result-stats']")
+            self.driver.find_element(By.ID, HomeLocators.STATS)
             return True
         except NoSuchElementException:
             return False
+
+    def get_stats_text(self):
+        return self.driver.find_element(By.ID, HomeLocators.STATS).text
