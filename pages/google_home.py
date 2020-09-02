@@ -24,6 +24,7 @@ class GoogleHomePage(PageFactory):
 
     def search(self):
         # set_text(), click_button() methods are extended methods in PageFactory
+        self.driver.get(TestData.BASE_URL)
         self.searchBox.set_text(TestData.SEARCH_TERM)  # edtUserName become class variable using PageFactory
         self.btnSubmit.click_button()
 
